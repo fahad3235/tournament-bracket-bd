@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tournament Bracket BD</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1 data-i18n="title">Tournament Bracket BD</h1>
+    <p class="tagline" data-i18n="tagline">Single-elimination brackets for school, club and neighbourhood tournaments &#8212; offline, in English or &#2476;&#2494;&#2434;&#2482;&#2494;.</p>
+  </div>
+  <div class="lang-switch" role="group" aria-label="Language">
+    <button type="button" id="langEn" class="lang-btn active" data-i18n="langEn">English</button>
+    <button type="button" id="langBn" class="lang-btn" data-i18n="langBn">&#2476;&#2494;&#2434;&#2482;&#2494;</button>
+  </div>
+</header>
+
+<main>
+  <div id="msg" class="msg" hidden></div>
+
+  <section id="setupView" class="card">
+    <h2 data-i18n="setupTitle">New tournament</h2>
+    <div id="setupErrors" class="errors" hidden></div>
+    <label class="field"><span data-i18n="tourneyName">Tournament name</span>
+      <input type="text" id="tourneyName" maxlength="80" data-i18n-ph="tourneyNamePh" placeholder="e.g. Inter-Class Cricket Cup">
+    </label>
+    <label class="field"><span data-i18n="entrants">Entrants &#8212; one per line (2&#8211;64)</span>
+      <textarea id="entrants" rows="8" data-i18n-ph="entrantsPh" placeholder="Rahim&#10;Karim&#10;Sumon&#10;Nusrat"></textarea>
+    </label>
+    <label class="field"><span data-i18n="seeding">Seeding</span>
+      <select id="seeding">
+        <option value="entered" data-i18n="seedingAsEntered">As entered (line 1 = top seed)</option>
+        <option value="random" data-i18n="seedingRandom">Random draw</option>
+      </select>
+    </label>
+    <div class="btn-row">
+      <button type="button" id="btnStart" class="primary" data-i18n="startBtn">Generate bracket</button>
+      <button type="button" id="btnSample" data-i18n="sampleBtn">Load sample (8 players)</button>
+    </div>
+  </section>
+
+  <section id="bracketView" hidden>
+    <div id="results" class="card"></div>
+    <div class="controls">
+      <button type="button" id="btnNew" data-i18n="newTourney">New tournament</button>
+      <button type="button" id="btnPrint" data-i18n="printBtn">Print bracket</button>
+      <button type="button" id="btnExport" data-i18n="exportBtn">Export JSON</button>
+      <button type="button" id="btnImport" data-i18n="importBtn">Import JSON</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+      <button type="button" id="btnErase" class="danger" data-i18n="eraseBtn">Erase all data</button>
+    </div>
+    <div id="eraseBox" class="card erase-box" hidden>
+      <p data-i18n="erasePrompt">Type DELETE to erase this tournament and all saved data.</p>
+      <input type="text" id="eraseInput" autocomplete="off">
+      <div class="btn-row">
+        <button type="button" id="btnEraseConfirm" class="danger" data-i18n="eraseConfirm">Erase</button>
+        <button type="button" id="btnEraseCancel" data-i18n="eraseCancel">Cancel</button>
+      </div>
+    </div>
+    <h2 data-i18n="bracketTitle">Bracket</h2>
+    <div id="bracket" class="bracket-wrap"></div>
+  </section>
+</main>
+
+<footer data-i18n="footer">Offline tool. Brackets are generated on your device &#8212; nothing is uploaded. Seed 1 is the favourite; byes go to the top seeds.</footer>
+
+<script src="js/logic.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
